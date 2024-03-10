@@ -1,0 +1,106 @@
+﻿@model ShoppingWebsite.Models.admin
+
+@{
+    Layout = null;
+}
+
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Đăng nhập</title>
+    <link rel="stylesheet" href="~/Content/Admin/css/styles.min.css" />
+</head>
+
+<body>
+    <!--  Body Wrapper -->
+    <div class="page-wrapper" id="main-wrapper" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full"
+         data-sidebar-position="fixed" data-header-position="fixed">
+        <div class="position-relative overflow-hidden radial-gradient min-vh-100 d-flex align-items-center justify-content-center">
+            <div class="d-flex align-items-center justify-content-center w-100">
+                <div class="row justify-content-center w-100">
+                    <div class="col-md-8 col-lg-6 col-xxl-3">
+                        <div class="card mb-0">
+                            <div class="card-body">
+                                <a href="@Url.Action("Index", "AdminHome")" class="text-nowrap logo-img text-center d-block py-3 w-100">
+                                    <img src="~/Content/Admin/images/logos/R.jpeg" width="180" alt="">
+                                </a>
+                                <form>
+                                    <div class="mb-3">
+                                        @Html.EditorFor(model => model.adminid, new { htmlAttributes = new { @class = "form-control", placeholder = "ID" } })
+                                        @Html.ValidationMessageFor(model => model.adminid, "", new { @class = "text-danger" })
+                                    </div>
+                                    <div class="mb-3">
+                                        @Html.EditorFor(model => model.username, new { htmlAttributes = new { @class = "form-control", placeholder = "Username" } })
+                                        @Html.ValidationMessageFor(model => model.username, "", new { @class = "text-danger" })
+                                    </div>
+                                    <div class="mb-4">
+                                        @Html.EditorFor(model => model.password, new { htmlAttributes = new { @class = "form-control", placeholder = "Password" } })
+                                        @Html.ValidationMessageFor(model => model.password, "", new { @class = "text-danger" })
+                                    </div>
+                                    <div class="mb-4">
+                                        @Html.EditorFor(model => model.full_name, new { htmlAttributes = new { @class = "form-control", placeholder = "Full name" } })
+                                        @Html.ValidationMessageFor(model => model.full_name, "", new { @class = "text-danger" })
+                                    </div>
+                                    <input type="submit" id="btnSignUp" name="btnSignUp" value="Create" class="btn btn-primary w-100 py-8 fs-4 mb-4 rounded-2" />
+                                    <div class="d-flex align-items-center justify-content-center">
+                                        <p class="fs-4 mb-0 fw-bold">Already have an Account?</p>
+                                        <a class="text-primary fw-bold ms-2" href="@Url.Action("Login", "AdminLogin")">Sign In</a>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+<script src="~/Content/Admin/libs/jquery/dist/jquery.min.js"></script>
+<script src="~/Content/Admin/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#btnSignUp").click(function () {
+            if ($("#adminid").val() == "" || $("#username").val() == "" || $("#password").val() == "" || $("#full_name").val() == "") {
+                alert("Vui lòng điền đầy đủ thông tin!");
+                return false;
+            } else {
+                $("#msg").hide();
+                var admin = {
+                    adminid: $("#adminid").val(),
+                    username: $("#username").val(),
+                    password: $("#password").val(),
+                    full_name: $("#full_name").val()
+                };
+
+                $.ajax({
+                    type: "POST",
+                    url: '@Url.Action("Create")',
+                    data: JSON.stringify({ admin: admin }),
+                    dataType: "json",
+                    contentType: "application/json; charset=utf-8",
+                    success: function (response) {
+                        if (response.result === true) {
+                            alert("New record added successfully!");
+                        } else {
+                            alert(response.error);
+                        }
+                    },
+                    error: function (response) {
+                        $("#msg").html("Error in AJAX request!");
+                        $("#msg").show();
+                    },
+                });
+            }
+        });
+    });
+</script>
+
+@if (!string.IsNullOrEmpty(ViewBag.SuccessMessage))
+{
+    <div id="msg" class="alert alert-success">@ViewBag.SuccessMessage</div>
+}

@@ -1,0 +1,56 @@
+﻿@{
+    ViewBag.Title = "Complete";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>@ViewBag.Title</title>
+    <!-- Add your CSS links here if you have external stylesheets -->
+    <style>
+        /* Style for the header */
+        h2 {
+            color: #333;
+            font-size: 36px; /* Bigger font size */
+            text-align: center; /* Align to center */
+            margin-bottom: 20px;
+        }
+
+        /* Style for the container */
+        .container {
+            text-align: center; /* Align all content to center */
+            margin-top: 50px; /* Add some top margin for spacing */
+        }
+
+        /* Style for the "Continue shopping" link */
+        .continue-shopping-link {
+            display: inline-block;
+            background-color: #007bff;
+            color: #fff;
+            text-decoration: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+            margin-top: 20px; /* Add some top margin for spacing */
+        }
+
+        .continue-shopping-link:hover {
+            background-color: #0056b3;
+            color: white;
+        }
+
+        .main-sec {
+            min-height: 12em;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Thank you for choosing my website!</h2>
+        <!-- Use Html.ActionLink to generate the "Continue shopping" link -->
+        @Html.ActionLink("Continue shopping", "Index", "Products", null, new { @class = "continue-shopping-link" })
+    </div>
+</body>
+</html>

@@ -1,0 +1,4 @@
+-Sửa lỗi thêm sản phẩm không hiển thị ảnh
+-Sửa lỗi xóa sản phẩm trong giỏ hàng
+-Sửa ảnh collection
+-Bổ subg quản lý tài khoản người dùng

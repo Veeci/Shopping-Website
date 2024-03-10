@@ -1,0 +1,74 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Đăng nhập</title>
+    <link rel="shortcut icon" type="image/png" href="~/Content/Admin/images/logos/dark-logo.svg" />
+    <link rel="stylesheet" href="~/Content/Admin/css/styles.min.css" />
+    <style>
+        button, input, optgroup, select, textarea {
+            margin: 0;
+            font-family: inherit;
+            font-size: inherit;
+            line-height: inherit;
+            width: 100%;
+            height: 40px;
+        }
+    </style>
+</head>
+
+<body>
+    <!--  Body Wrapper -->
+    <div class="page-wrapper" id="main-wrapper" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full"
+         data-sidebar-position="fixed" data-header-position="fixed">
+        <div class="position-relative overflow-hidden radial-gradient min-vh-100 d-flex align-items-center justify-content-center">
+            <div class="d-flex align-items-center justify-content-center w-100">
+                <div class="row justify-content-center w-100">
+                    <div class="col-md-8 col-lg-6 col-xxl-3">
+                        <div class="card mb-0">
+                            <div class="card-body">
+                                <a href="@Url.Action("Index", "AdminHome")" class="text-nowrap logo-img text-center d-block py-3 w-100">
+                                    <img src="~/Content/Admin/images/logos/R.jpeg" width="180" alt="">
+                                </a>
+                                <form action="@Url.Action("Login", "AdminLogin")" method="post">
+                                    <div class="mb-3">
+                                        <label class="form-label">Username</label>
+                                        <div>@Html.TextBox("username", null, new { placeholder = "Username" })</div>
+                                    </div>
+                                    <div class="mb-4">
+                                        <label class="form-label">Password</label>
+                                        <div>@Html.TextBox("password", null, new { placeholder = "Password" })</div>
+                                    </div>
+                                    <div class="d-flex align-items-center justify-content-between mb-4">
+                                        <div class="form-check">
+                                            <input class="form-check-input primary" type="checkbox" value="" id="flexCheckChecked" checked>
+                                            <label class="form-check-label text-dark" for="flexCheckChecked">
+                                                Remeber this Device
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <input type="submit" value="Sign in" class="btn-primary" />
+                                    <div class="d-flex align-items-center justify-content-center">
+                                        <p class="fs-4 mb-0 fw-bold">Are you new?</p>
+                                        <a class="text-primary fw-bold ms-2" href="@Url.Action("Create", "AdminLogin")">Create an account</a>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="~/Content/Admin/libs/jquery/dist/jquery.min.js"></script>
+    <script src="~/Content/Admin/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+@ViewBag.Error
+</html>

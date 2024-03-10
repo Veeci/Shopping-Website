@@ -1,0 +1,339 @@
+﻿@model IEnumerable<ShoppingWebsite.Models.Product>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!DOCTYPE html>
+<html lang="zxx">
+
+<head>
+    <title>Fashion Hub Ecommerce Category Bootstrap Responsive Website Template| Men :: w3layouts</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8" />
+    <meta name="keywords" content="Fashion Hub Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template,
+	SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony Ericsson, Motorola web design" />
+    <script>
+        addEventListener("load", function () {
+            setTimeout(hideURLbar, 0);
+        }, false);
+
+        function hideURLbar() {
+            window.scrollTo(0, 1);
+        }
+    </script>
+    <!-- Custom Theme files -->
+    <link href="~/Content/Collection/css/bootstrap.css" type="text/css" rel="stylesheet" media="all">
+    <!-- shop css -->
+    <link href="~/Content/Collection/css/shop.css" type="text/css" rel="stylesheet" media="all">
+    <link href="~/Content/Collection/css/flexslider.css" type="text/css" rel="stylesheet" media="all">
+    <link href="~/Content/Collection/css/style.css" type="text/css" rel="stylesheet" media="all">
+    <!-- Range-slider-css -->
+    <link rel="stylesheet" type="text/css" href="~/Content/Collection/css/jquery-ui1.css">
+
+    <!-- font-awesome icons -->
+    <link href="~/Content/Collection/css/fontawesome-all.min.css" rel="stylesheet">
+    <!-- //Custom Theme files -->
+    <!-- online-fonts -->
+    <link href="//fonts.googleapis.com/css?family=Elsie+Swash+Caps:400,900" rel="stylesheet">
+    <link href="//fonts.googleapis.com/css?family=Source+Sans+Pro:200,200i,300,300i,400,400i,600,600i,700,700i,900,900i" rel="stylesheet">
+    <!-- //online-fonts -->
+    <style>
+        .main-sec {
+            min-height: 12em;
+        }
+
+        input#btnBuy.btn-primary {
+            margin-right: 40px;
+        }
+
+            input#btnBuy.btn-primary:hover {
+                background-color: red;
+            }
+
+        a.link-product-add-cart {
+            margin-right: 30px;
+        }
+
+        div.card-footer.d-flex.justify-content-end {
+            margin-top: 30px;
+        }
+    </style>
+</head>
+<body>
+    <div class="innerf-pages section">
+        <div class="fh-container mx-auto">
+            <!-- Shop -->
+            <div class="row my-lg-5 mb-5">
+                <!-- grid left -->
+                <div class="side-bar col-lg-3">
+                    <!--preference -->
+                    <div class="left-side">
+
+                    </div>
+                    <!-- // preference -->
+                    <div class="search-hotel">
+                        <h3 class="shopf-sear-headits-sear-head">
+                            <span>Brand</span> in focus
+                        </h3>
+                        <form action="#" method="post">
+                            <input type="search" placeholder="search here" name="search" required="">
+                            <input type="submit" value="Search">
+                        </form>
+                    </div>
+                    <!-- price range -->
+                    <div class="range">
+                        <h3 class="shopf-sear-headits-sear-head">
+                            <span>Price</span> range
+                        </h3>
+                        <ul class="dropdown-menu6">
+                            <li>
+
+                                <div id="slider-range"></div>
+                                <input type="text" id="amount" style="border: 0; color: #ffffff; font-weight: normal;" />
+                            </li>
+                        </ul>
+                    </div>
+                    <!-- //price range -->
+                    <!--preference -->
+                    <div class="left-side">
+                        <h3 class="shopf-sear-headits-sear-head">
+                            <span>latest</span> arrivals
+                        </h3>
+                        <ul>
+                            <li>
+                                <input type="checkbox" class="checked" name="arr1" id="arr1">
+                                <label for="arr1">last 30 days</label>
+                            </li>
+                            <li>
+                                <input type="checkbox" class="checked" name="arr2" id="arr2">
+                                <label for="arr2">last 90 days</label>
+                            </li>
+                            <li>
+                                <input type="checkbox" class="checked" name="arr3" id="arr3">
+                                <label for="arr3">last 150 days</label>
+                            </li>
+
+                        </ul>
+                    </div>
+                    <!-- // preference -->
+                    <!-- reviews -->
+                    <div class="customer-rev left-side">
+                        <h3 class="shopf-sear-headits-sear-head">Customer Review</h3>
+                        <ul>
+                            <li>
+                                <a href="#">
+                                    <i class="fa fa-star" aria-hidden="true"></i>
+                                    <i class="fa fa-star" aria-hidden="true"></i>
+                                    <i class="fa fa-star" aria-hidden="true"></i>
+                                    <i class="fa fa-star" aria-hidden="true"></i>
+                                    <i class="fa fa-star" aria-hidden="true"></i>
+                                    <span>5.0</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <i class="fa fa-star" aria-hidden="true"></i>
+                                    <i class="fa fa-star" aria-hidden="true"></i>
+                                    <i class="fa fa-star" aria-hidden="true"></i>
+                                    <i class="fa fa-star" aria-hidden="true"></i>
+                                    <i class="fa fa-star-o" aria-hidden="true"></i>
+                                    <span>4.0</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <i class="fa fa-star" aria-hidden="true"></i>
+                                    <i class="fa fa-star" aria-hidden="true"></i>
+                                    <i class="fa fa-star" aria-hidden="true"></i>
+                                    <i class="fa fa-star-half-o" aria-hidden="true"></i>
+                                    <i class="fa fa-star-o" aria-hidden="true"></i>
+                                    <span>3.5</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <i class="fa fa-star" aria-hidden="true"></i>
+                                    <i class="fa fa-star" aria-hidden="true"></i>
+                                    <i class="fa fa-star" aria-hidden="true"></i>
+                                    <i class="fa fa-star-o" aria-hidden="true"></i>
+                                    <i class="fa fa-star-o" aria-hidden="true"></i>
+                                    <span>3.0</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <i class="fa fa-star" aria-hidden="true"></i>
+                                    <i class="fa fa-star" aria-hidden="true"></i>
+                                    <i class="fa fa-star-half-o" aria-hidden="true"></i>
+                                    <i class="fa fa-star-o" aria-hidden="true"></i>
+                                    <i class="fa fa-star-o" aria-hidden="true"></i>
+                                    <span>2.5</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                    <!-- //reviews -->
+                </div>
+                <!-- //grid left -->
+                <!-- grid right -->
+                <div class="col-lg-9 mt-lg-0 mt-5 right-product-grid">
+                    <!-- card group  -->
+                    <div class="card-group">
+                        <!-- card -->
+                        @foreach (var item in Model)
+                        {
+                            <div class="col-lg-3 col-sm-6 p-0">
+                                <div class="card product-men p-3">
+                                    <div class="men-thumb-item">
+                                        @{
+                                            string path = "~/Content/images/" + item.image;
+                                        }
+                                        <img src="@Url.Content(path)" alt="img" class="card-img-top">
+                                        <div class="men-cart-pro">
+                                            <div class="inner-men-cart-pro">
+                                                @{
+                                                    var url = "/product/productdetail/" + item.productID;
+                                                }
+                                                <a href="@Url.Content(url)" class="link-product-add-cart">View Detail</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- card body -->
+                                    <div class="card-body  py-3 px-2">
+                                        <h5 class="card-title text-capitalize">@Html.DisplayFor(modelItem => item.productName)</h5>
+                                        <div class="card-text d-flex justify-content-between">
+                                            <p class="text-dark font-weight-bold">@Html.DisplayFor(modelItem => item.price) $</p>
+                                            <p class="line-through">$50.99</p>
+                                        </div>
+                                    </div>
+                                    <!-- card footer -->
+                                    <div class="card-footer d-flex justify-content-end">
+                                        @if (Session["user"] != null)
+                                        {
+                                            var url1 = "/product/addtocart/" + item.productID;
+
+                                            <a href="@Url.Content(url1)" class="link-product-add-cart">Add to cart</a>
+                                        }
+                                        else
+                                        {
+                                            <a href="@Url.Action("Login", "UserLogin")" class="link-product-add-cart">Login to buy</a>
+                                        }
+                                        <form action="#" method="post">
+                                            <input type="hidden" name="cmd" value="_cart">
+                                            <input type="hidden" name="add" value="1">
+                                            <input type="hidden" name="hub_item" value="Solid Formal Black Shirt">
+                                            <input type="hidden" name="amount" value="40.00">
+                                            <a href="#" data-toggle="modal" data-target="#myModal1"></a>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                        <!-- //card -->
+                    </div>
+                </div>
+
+                <!-- js -->
+                <script src="~/Content/Collection/js/jquery-2.2.3.min.js"></script>
+                <!-- //js -->
+                <!-- smooth dropdown -->
+                <script>
+                    $(document).ready(function () {
+                        $('ul li.dropdown').hover(function () {
+                            $(this).find('.dropdown-menu').stop(true, true).delay(200).fadeIn(200);
+                        }, function () {
+                            $(this).find('.dropdown-menu').stop(true, true).delay(200).fadeOut(200);
+                        });
+                    });
+                </script>
+                <!-- //smooth dropdown -->
+                <!-- script for password match -->
+                <script>
+                    window.onload = function () {
+                        document.getElementById("password1").onchange = validatePassword;
+                        document.getElementById("password2").onchange = validatePassword;
+                    }
+
+                    function validatePassword() {
+                        var pass2 = document.getElementById("password2").value;
+                        var pass1 = document.getElementById("password1").value;
+                        if (pass1 != pass2)
+                            document.getElementById("password2").setCustomValidity("Passwords Don't Match");
+                        else
+                            document.getElementById("password2").setCustomValidity('');
+                        //empty string means no validation error
+                    }
+                </script>
+                <!-- script for password match -->
+                <!-- cart-js -->
+                <script src="~/Content/Collection/js/minicart.js"></script>
+                <script>
+                    hub.render();
+
+                    hub.cart.on('new_checkout', function (evt) {
+                        var items, len, i;
+
+                        if (this.subtotal() > 0) {
+                            items = this.items();
+
+                            for (i = 0, len = items.length; i < len; i++) { }
+                        }
+                    });
+                </script>
+                <!-- //cart-js -->
+                <!-- price range (top products) -->
+                <script src="~/Content/Collection/js/jquery-ui.js"></script>
+                <script>
+                    //<![CDATA[
+                    $(window).load(function () {
+                        $("#slider-range").slider({
+                            range: true,
+                            min: 0,
+                            max: 9000,
+                            values: [50, 6000],
+                            slide: function (event, ui) {
+                                $("#amount").val("$" + ui.values[0] + " - $" + ui.values[1]);
+                            }
+                        });
+                        $("#amount").val("$" + $("#slider-range").slider("values", 0) + " - $" + $("#slider-range").slider("values", 1));
+
+                    }); //]]>
+                </script>
+                <!-- //price range (top products) -->
+                <script src="~/Content/Collection/js/bootstrap.js"></script>
+                <!-- start-smoth-scrolling -->
+                <script src="~/Content/Collection/js/move-top.js"></script>
+                <script src="~/Content/Collection/js/easing.js"></script>
+                <script>
+                    jQuery(document).ready(function ($) {
+                        $(".scroll").click(function (event) {
+                            event.preventDefault();
+                            $('html,body').animate({
+                                scrollTop: $(this.hash).offset().top
+                            }, 1000);
+                        });
+                    });
+                </script>
+                <!-- start-smoth-scrolling -->
+                <!-- here stars scrolling icon -->
+                <script>
+                    $(document).ready(function () {
+                        $().UItoTop({
+                            easingType: 'easeOutQuart'
+                        });
+
+                    });
+                </script>
+                <!-- //here ends scrolling icon -->
+                <!-- smoothscroll -->
+                <script src="~/Content/Collection/js/SmoothScroll.min.js"></script>
+                <!-- //smoothscroll -->
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>

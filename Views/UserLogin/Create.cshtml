@@ -1,0 +1,125 @@
+﻿@model ShoppingWebsite.Models.user
+
+@{
+    ViewBag.Title = "Signup";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<style>
+    .main-sec {
+        min-height: 12em;
+    }
+</style>
+
+<!--/login -->
+<section class="banner-bottom py-5">
+    <div class="container">
+        <div class="content-grid">
+            <div class="text-center icon">
+                <span class="fa fa-user-circle-o"></span>
+            </div>
+            <div class="content-bottom">
+                <form action="#" method="post">
+                    <div class="field-group">
+
+                        <div class="content-input-field">
+                            @Html.EditorFor(model => model.userid, new { htmlAttributes = new { @class = "form-control", placeholder = "Enter User ID" } })
+                            @Html.ValidationMessageFor(model => model.userid, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="field-group">
+
+                        <div class="content-input-field">
+                            @Html.EditorFor(model => model.username, new { htmlAttributes = new { @class = "form-control", placeholder = "Enter Username" } })
+                            @Html.ValidationMessageFor(model => model.username, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="field-group">
+
+                        <div class="content-input-field">
+                            @Html.EditorFor(model => model.password, new { htmlAttributes = new { @class = "form-control", placeholder = "Enter Password" } })
+                            @Html.ValidationMessageFor(model => model.password, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="field-group">
+                        <div class="content-input-field">
+                            @Html.EditorFor(model => model.email, new { htmlAttributes = new { @class = "form-control", placeholder = "Enter Email" } })
+                            @Html.ValidationMessageFor(model => model.email, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="field-group">
+                        <div class="content-input-field">
+                            @Html.EditorFor(model => model.phone_number, new { htmlAttributes = new { @class = "form-control", placeholder = "Enter Phone Number" } })
+                            @Html.ValidationMessageFor(model => model.phone_number, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="field-group">
+                        <div class="content-input-field">
+                            @Html.EditorFor(model => model.full_name, new { htmlAttributes = new { @class = "form-control", placeholder = "Enter Full Name" } })
+                            @Html.ValidationMessageFor(model => model.full_name, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="content-input-field">
+                        <input type="submit" name="btnSignUp" id="btnSignUp" value="Sign up" class="btn-primary" />
+                    </div>
+                    <div class="list-login-bottom text-center mt-lg-5 mt-4">
+
+                        <a href="#" class="">By clicking Signup, I agree to your terms</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- /login -->
+
+@if (!string.IsNullOrEmpty(ViewBag.SuccessMessage))
+{
+    <div id="msg" class="alert alert-success">@ViewBag.SuccessMessage</div>
+}
+
+
+<div id="msg" class="alert alert-danger"></div>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#btnSignUp").click(function () {
+            if ($("#userid").val() == "" || $("#username").val() == "" || $("#password").val() == "" || $("#email").val() == "" || $("#phone_number").val() == "" || $("#full_name").val() == "") {
+                $("#msg").html("Please fill in all fields!");
+                $("#msg").show();
+                return false;
+            } else {
+                $("#msg").hide();
+                var user = {
+                    userid: $("#userid").val(),
+                    username: $("#username").val(),
+                    password: $("#password").val(),
+                    email: $("#email").val(),
+                    phone_number: $("#phone_number").val(),
+                    full_name: $("#full_name").val()
+                };
+
+                $.ajax({
+                    type: "POST",
+                    url: '@Url.Action("Create")',
+                    data: JSON.stringify({ user: user }),
+                    dataType: "json",
+                    contentType: "application/json; charset=utf-8",
+                    success: function (response) {
+                        if (response.result === true) {
+                            $("#msg").html("New record added successfully!");
+                            $("#msg").show();
+                        } else {
+                            $("#msg").html(response.error);
+                            $("#msg").show();
+                        }
+                    },
+                    error: function (response) {
+                        $("#msg").html("Error in AJAX request!");
+                        $("#msg").show();
+                    },
+                });
+            }
+        });
+    });
+</script>

@@ -1,0 +1,423 @@
+﻿@model ShoppingWebsite.Models.Product
+
+@{
+    ViewBag.Title = "ProductDetail";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<!DOCTYPE html>
+<html lang="zxx">
+
+<head>
+    <title>Fashion Hub Ecommerce Category Bootstrap Responsive Website Template| Men's :: w3layouts</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8" />
+    <meta name="keywords" content="Fashion Hub Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template,
+	SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony Ericsson, Motorola web design" />
+    <script>
+        addEventListener("load", function () {
+            setTimeout(hideURLbar, 0);
+        }, false);
+
+        function hideURLbar() {
+            window.scrollTo(0, 1);
+        }
+    </script>
+    <!-- Custom Theme files -->
+    <link href="~/Content/Collection/css/bootstrap.css" type="text/css" rel="stylesheet" media="all">
+    <!-- shop css -->
+    <link href="~/Content/Collection/css/shop.css" type="text/css" rel="stylesheet" media="all">
+    <link href="~/Content/Collection/css/flexslider.css" type="text/css" rel="stylesheet" media="all">
+    <link href="~/Content/Collection/css/style.css" type="text/css" rel="stylesheet" media="all">
+    <!-- font-awesome icons -->
+    <link href="~/Content/Collection/css/fontawesome-all.min.css" rel="stylesheet">
+    <!-- //Custom Theme files -->
+    <!-- online-fonts -->
+    <link href="//fonts.googleapis.com/css?family=Elsie+Swash+Caps:400,900" rel="stylesheet">
+    <link href="//fonts.googleapis.com/css?family=Source+Sans+Pro:200,200i,300,300i,400,400i,600,600i,700,700i,900,900i" rel="stylesheet">
+    <!-- //online-fonts -->
+    <style>
+        .main-sec {
+            min-height: 12em;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Single -->
+    <div class="innerf-pages section py-5">
+        <div class="container">
+            <div class="row my-sm-5">
+                <div class="col-lg-4 single-right-left">
+                    <div class="grid images_3_of_2">
+                        <div class="flexslider1">
+                            <ul class="slides">
+                                <li data-thumb="images/ms1.jpg">
+                                    <div class="thumb-image">
+                                        @{
+                                            string path = "~/Content/images/" + Model.image;
+                                        }
+                                        <img src="@Url.Content(path)" data-imagezoom="true" alt=" " class="img-fluid">
+                                    </div>
+                                </li>
+                            </ul>
+                            <div class="clearfix"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-8 mt-lg-0 mt-5 single-right-left simpleCart_shelfItem">
+                    <h1>@Html.DisplayFor(Model => Model.productName)</h1>
+                    <div class="caption">
+
+                        <ul class="rating-single">
+                            <li>
+                                <a href="#">
+                                    <span class="fa fa-star yellow-star" aria-hidden="true"></span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <span class="fa fa-star yellow-star" aria-hidden="true"></span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <span class="fa fa-star yellow-star" aria-hidden="true"></span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <span class="fa fa-star yellow-star" aria-hidden="true"></span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <span class="fa fa-star yellow-star" aria-hidden="true"></span>
+                                </a>
+                            </li>
+                        </ul>
+                        <div class="clearfix"> </div>
+                        <h6>
+                            @Html.DisplayFor(Model => Model.price) $
+                        </h6>
+                    </div>
+                    <div class="desc_single">
+                        <h5>Description</h5>
+                        <p>
+                            @Html.DisplayFor(Model => Model.description)
+                        </p>
+                    </div>
+                    <div class="d-sm-flex justify-content-between">
+                        <div class="occasional">
+                            <h5 class="sp_title mb-3">Highlights</h5>
+                            <ul class="single_specific">
+                                <li>
+                                    <span>Fabric: </span> Poly-Viscose
+                                </li>
+                                <li>
+                                    <span>Pattern :</span> Solid
+                                </li>
+                                <li>
+                                    <span>Type :</span> Single Breasted
+                                </li>
+                                <li>
+                                    <span>Fit :</span> Slim
+                                </li>
+                            </ul>
+
+                        </div>
+                        <div class="color-quality mt-sm-0 mt-4">
+                            <h5 class="sp_title mb-3">services</h5>
+                            <ul class="single_serv">
+                                <li>
+                                    <a href="#">30 Day Return Policy</a>
+                                </li>
+                                <li class="mt-2">
+                                    <a href="#">Cash on Delivery available</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <br />
+                    <div>
+                        @if (Session["user"] != null)
+                        {
+
+                            var url1 = "/product/addtocart/" + Model.productID;
+
+                            <a href="@Url.Content(url1)" class="link-product-add-cart">Add to cart</a>
+                        }
+                        else
+                        {
+                            <a href="@Url.Action("Login", "UserLogin")" class="link-product-add-cart">Login</a>
+                        }
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /new_arrivals -->
+    <div class="section singlep_btm pb-5">
+        <div class="container">
+            <div class="new_arrivals">
+                <h4 class="rad-txt text-capitalize">
+                    you may also be interested in
+                </h4>
+                <!-- card group 2 -->
+                <div class="card-group my-5">
+                    <!-- card -->
+                    <div class="col-lg-3 col-sm-6 p-0">
+                        <div class="card product-men p-3">
+                            <div class="men-thumb-item">
+                                <img src="~/Content/images/b10.jpeg" alt="img" class="card-img-top">
+                                <div class="men-cart-pro">
+                                    <div class="inner-men-cart-pro">
+                                        @{
+                                            string id = "p10";
+                                            var url = "/product/productdetail/" + id;
+                                        }
+                                        <a href="@Url.Content(url)" class="link-product-add-cart">Quick View</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- card body -->
+                            <div class="card-body  py-3 px-2">
+                                <h5 class="card-title text-capitalize">Black Casual Men's Blazer</h5>
+                                <div class="card-text d-flex justify-content-between">
+                                    <p class="text-dark font-weight-bold">$20.00</p>
+                                    <p class="line-through">$25.00</p>
+                                </div>
+                            </div>
+                            <!-- card footer -->
+                            <div class="card-footer d-flex justify-content-end">
+                                <form action="#" method="post">
+                                    <input type="hidden" name="cmd" value="_cart">
+                                    <input type="hidden" name="add" value="1">
+                                    <input type="hidden" name="hub_item" value="Black Casual Men's Blazer">
+                                    <input type="hidden" name="amount" value="20.00">
+                                    <button type="submit" class="hub-cart phub-cart btn">
+                                        <i class="fa fa-cart-plus" aria-hidden="true"></i>
+                                    </button>
+                                    <a href="#" data-toggle="modal" data-target="#myModal1"></a>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- //card -->
+                    <!-- card -->
+                    <div class="col-lg-3 col-sm-6 p-0">
+                        <div class="card product-men p-3">
+                            <div class="men-thumb-item">
+                                <img src="~/Content/images/b11.jpeg" alt="img" class="card-img-top">
+                                <div class="men-cart-pro">
+                                    <div class="inner-men-cart-pro">
+                                        @{
+                                            string id2 = "p11";
+                                            var url2 = "/product/productdetail/" + id2;
+                                        }
+                                        <a href="@Url.Content(url2)" class="link-product-add-cart">Quick View</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- card body -->
+                            <div class="card-body  py-3 px-2">
+                                <h5 class="card-title text-capitalize">Blue Wedding Formal Blazer</h5>
+                                <div class="card-text d-flex justify-content-between">
+                                    <p class="text-dark font-weight-bold">$35.00</p>
+                                    <p class="line-through">$44.99</p>
+                                </div>
+                            </div>
+                            <!-- card footer -->
+                            <div class="card-footer d-flex justify-content-end">
+                                <form action="#" method="post">
+                                    <input type="hidden" name="cmd" value="_cart">
+                                    <input type="hidden" name="add" value="1">
+                                    <input type="hidden" name="hub_item" value="Blue Wedding Formal Blazer">
+                                    <input type="hidden" name="amount" value="35.00">
+                                    <button type="submit" class="hub-cart phub-cart btn">
+                                        <i class="fa fa-cart-plus" aria-hidden="true"></i>
+                                    </button>
+                                    <a href="#" data-toggle="modal" data-target="#myModal1"></a>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- //card -->
+                    <!-- card -->
+                    <div class="col-lg-3 col-sm-6 p-0">
+                        <div class="card product-men p-3 out_w3">
+                            <div class="men-thumb-item position-relative">
+                                <img src="~/Content/images/b12.jpeg" alt="img" class="card-img-top">
+                                <span class="px-2 position-absolute">out of stock</span>
+                            </div>
+                            <!-- card body -->
+                            <div class="card-body  py-3 px-2">
+                                <h5 class="card-title text-capitalize">grey Wedding Formal Blazer</h5>
+                                <div class="card-text d-flex justify-content-between">
+                                    <p class="text-dark font-weight-bold">$25.00</p>
+                                    <p class="line-through">$28.00</p>
+                                </div>
+                            </div>
+                            <!-- card footer -->
+                            <div class="card-footer d-flex justify-content-end">
+                                <button type="submit" class="hub-cart phub-cart btn">
+                                    <i class="fa fa-cart-plus" aria-hidden="true"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- //card -->
+                    <!-- card -->
+                    <div class="col-lg-3 col-sm-6 p-0">
+                        <div class="card product-men p-3">
+                            <div class="men-thumb-item">
+                                <img src="~/Content/images/b19.jpeg" alt="img" class="card-img-top">
+                                <div class="men-cart-pro">
+                                    <div class="inner-men-cart-pro">
+                                        @{
+                                            string id4 = "p19";
+                                            var url4 = "/product/productdetail/" + id4;
+                                        }
+                                        <a href="@Url.Content(url4)" class="link-product-add-cart">Quick View</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- card body -->
+                            <div class="card-body  py-3 px-2">
+                                <h5 class="card-title text-capitalize">Blue Casual Men's Blazer</h5>
+                                <div class="card-text d-flex justify-content-between">
+                                    <p class="text-dark font-weight-bold">$29.99</p>
+                                    <p class="line-through">$34.99</p>
+                                </div>
+                            </div>
+                            <!-- card footer -->
+                            <div class="card-footer d-flex justify-content-end">
+                                <form action="#" method="post">
+                                    <input type="hidden" name="cmd" value="_cart">
+                                    <input type="hidden" name="add" value="1">
+                                    <input type="hidden" name="hub_item" value="Casual Men's Blazer">
+                                    <input type="hidden" name="amount" value="29.00">
+                                    <button type="submit" class="hub-cart phub-cart btn">
+                                        <i class="fa fa-cart-plus" aria-hidden="true"></i>
+                                    </button>
+                                    <a href="#" data-toggle="modal" data-target="#myModal1"></a>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- //card -->
+                </div>
+                <!-- //card group -->
+                <!--//new_arrivals-->
+            </div>
+        </div>
+    </div>
+    <!--// Single -->
+    <!-- js -->
+    <script src="~/Content/Collection/js/jquery-2.2.3.min.js"></script>
+    <!-- //js -->
+    <!-- smooth dropdown -->
+    <script>
+        $(document).ready(function () {
+            $('ul li.dropdown').hover(function () {
+                $(this).find('.dropdown-menu').stop(true, true).delay(200).fadeIn(200);
+            }, function () {
+                $(this).find('.dropdown-menu').stop(true, true).delay(200).fadeOut(200);
+            });
+        });
+    </script>
+    <!-- //smooth dropdown -->
+    <!-- script for password match -->
+    <script>
+        window.onload = function () {
+            document.getElementById("password1").onchange = validatePassword;
+            document.getElementById("password2").onchange = validatePassword;
+        }
+
+        function validatePassword() {
+            var pass2 = document.getElementById("password2").value;
+            var pass1 = document.getElementById("password1").value;
+            if (pass1 != pass2)
+                document.getElementById("password2").setCustomValidity("Passwords Don't Match");
+            else
+                document.getElementById("password2").setCustomValidity('');
+            //empty string means no validation error
+        }
+    </script>
+    <!-- script for password match -->
+    <!-- FlexSlider -->
+    <script src="~/Content/Collection/js/jquery.flexslider.js"></script>
+    <script>
+        // Can also be used with $(document).ready()
+        $(window).load(function () {
+            $('.flexslider1').flexslider({
+                animation: "slide",
+                controlNav: "thumbnails"
+            });
+        });
+    </script>
+    <!-- //FlexSlider-->
+    <!-- cart-js -->
+    <script src="~/Content/Collection/js/minicart.js"></script>
+    <script>
+        hub.render();
+
+        hub.cart.on('new_checkout', function (evt) {
+            var items, len, i;
+
+            if (this.subtotal() > 0) {
+                items = this.items();
+
+                for (i = 0, len = items.length; i < len; i++) { }
+            }
+        });
+    </script>
+    <!-- //cart-js -->
+    <!-- zoom -->
+    <script src="~/Content/Collection/js/imagezoom.js"></script>
+    <!-- zoom-->
+    <!-- start-smooth-scrolling -->
+    <script src="~/Content/Collection/js/move-top.js"></script>
+    <script src="~/Content/Collection/js/easing.js"></script>
+    <script>
+        jQuery(document).ready(function ($) {
+            $(".scroll").click(function (event) {
+                event.preventDefault();
+
+                $('html,body').animate({
+                    scrollTop: $(this.hash).offset().top
+                }, 1000);
+            });
+        });
+    </script>
+    <!-- //end-smooth-scrolling -->
+    <!-- smooth-scrolling-of-move-up -->
+    <script>
+        $(document).ready(function () {
+            /*
+            var defaults = {
+                containerID: 'toTop', // fading element id
+                containerHoverID: 'toTopHover', // fading element hover id
+                scrollSpeed: 1200,
+                easingType: 'linear'
+            };
+            */
+
+            $().UItoTop({
+                easingType: 'easeOutQuart'
+            });
+
+        });
+    </script>
+    <script src="~/Content/Collection/js/SmoothScroll.min.js"></script>
+    <!-- //smooth-scrolling-of-move-up -->
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="~/Content/Collection/js/bootstrap.js"></script>
+</body>
+
+</html>
+

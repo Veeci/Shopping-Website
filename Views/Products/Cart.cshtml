@@ -1,0 +1,274 @@
+﻿@model ShoppingWebsite.Models.Cart
+@{
+    ViewBag.Title = "AddToCart";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!DOCTYPE html>
+<html lang="zxx">
+<head>
+    <title>Cart</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8" />
+    <script>
+        addEventListener("load", function () {
+            setTimeout(hideURLbar, 0);
+        }, false);
+
+        function hideURLbar() {
+            window.scrollTo(0, 1);
+        }
+    </script>
+    <!-- Custom Theme files -->
+    <link href="~/Content/Collection/css/bootstrap.css" type="text/css" rel="stylesheet" media="all">
+    <!-- shop css -->
+    <link href="~/Content/Collection/css/shop.css" type="text/css" rel="stylesheet" media="all">
+    <link href="~/Content/Collection/css/checkout.css" type="text/css" rel="stylesheet" media="all">
+    <link href="~/Content/Collection/css/style.css" type="text/css" rel="stylesheet" media="all">
+    <!-- font-awesome icons -->
+    <link href="~/Content/Collection/css/fontawesome-all.min.css" rel="stylesheet">
+    <!-- //Custom Theme files -->
+    <!-- online-fonts -->
+    <link href="//fonts.googleapis.com/css?family=Elsie+Swash+Caps:400,900" rel="stylesheet">
+    <link href="//fonts.googleapis.com/css?family=Source+Sans+Pro:200,200i,300,300i,400,400i,600,600i,700,700i,900,900i" rel="stylesheet">
+    <!-- //online-fonts -->
+
+    <style>
+        .main-sec {
+            min-height: 12em;
+        }
+
+        .back-link {
+            display: inline-block;
+            background-color: #007bff;
+            color: #fff;
+            text-decoration: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+            margin-top: 20px; /* Add some top margin for spacing */
+        }
+
+            .continue-shopping-link:hover {
+                background-color: #0056b3;
+                color: white;
+            }
+    </style>
+</head>
+
+<body>
+    <!--checkout-->
+    <section class="checkout_wthree py-sm-5 py-3">
+        <div class="container">
+            <div class="check_w3ls">
+                <div class="d-sm-flex justify-content-between mb-4">
+                    <h4>
+                        review your order
+                    </h4>
+                </div>
+                <div class="checkout-right">
+                    <table class="timetable_sub">
+                        <thead>
+                            <tr>
+                                <th>SL No.</th>
+                                <th>Product</th>
+                                <th>Quantity</th>
+                                <th>Product Name</th>
+
+                                <th>Price</th>
+                                <th>Remove</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @{
+                                List<ShoppingWebsite.Models.Cart> cartList = (List<ShoppingWebsite.Models.Cart>)Session["cart"];
+                                List<ShoppingWebsite.Models.Product> list = (List<ShoppingWebsite.Models.Product>)Session["product"];
+                            }
+                            @if (cartList != null && list != null)
+                            {
+                                foreach (var item in cartList)
+                                {
+                                    <tr class="rem1">
+                                        <td class="invert">1</td>
+                                        <td class="invert-image">
+                                            @{
+                                                var url = "/product/productdetail/" + item.ProductID;
+                                                string path = "~/Content/images/" + item.Image;
+                                            }
+                                            <a href="@Url.Content(url)">
+                                                <img src="@Url.Content(path)" alt=" " class="img-responsive">
+                                            </a>
+                                        </td>
+                                        <td class="invert">@Html.DisplayFor(modelItem => item.Quantity)</td>
+                                        <td class="invert">@Html.DisplayFor(modelItem => item.ProductName)</td>
+                                        <td class="invert">@Html.DisplayFor(modelItem => item.Price) $</td>
+                                        <td class="invert">
+                                            @{
+                                                var removeUrl = Url.Action("Remove", "Products", new { productID = item.ProductID.Trim() });
+                                            }
+                                            <a href="@removeUrl" style="text-decoration:none; color:black">Remove</a>
+                                        </td>
+                                    </tr>
+                                }
+                            }
+                        </tbody>
+                    </table>
+                </div>
+                <div class="row checkout-left mt-5">
+                    <div class="col-md-4 checkout-left-basket">
+                        <h4>Total bill</h4>
+                        <ul>
+                            @{
+                                decimal? total = 0;
+                                if (cartList != null)
+                                {
+                                    foreach (var item in cartList)
+                                    {
+                                        total += item.Price * item.Quantity;
+                                        <li>
+                                            @item.ProductName
+                                            <i>-</i>
+                                            <span>@(item.Price * item.Quantity)</span>
+                                        </li>
+                                    }
+                                }
+
+                            }
+                            <li>
+                                Total
+                                <i>-</i>
+                                <span>@total</span>
+                            </li>
+                        </ul>
+                        @Html.ActionLink("Back", "Index", "Products", null, new { @class = "back-link" })
+                    </div>
+                    <div class="col-md-8 address_form">
+                        <h4>Billing Address</h4>
+                        <form action="@Url.Action("Index", "Payment")" method="post" class="creditly-card-form shopf-sear-headinfo_form">
+                            <div class="creditly-wrapper wrapper">
+                                <div class="information-wrapper">
+                                    <div class="first-row form-group">
+                                        <div class="controls">
+                                            <label class="control-label">Full name: </label>
+                                            <input class="billing-address-name form-control" type="text" name="name" placeholder="Full name">
+                                        </div>
+                                        <div class="card_number_grids">
+                                            <div class="card_number_grid_left">
+                                                <div class="controls">
+                                                    <label class="control-label">Mobile number:</label>
+                                                    <input class="form-control" type="text" placeholder="Mobile number">
+                                                </div>
+                                            </div>
+                                            <div class="card_number_grid_right">
+                                                <div class="controls">
+                                                    <label class="control-label">Landmark: </label>
+                                                    <input class="form-control" type="text" placeholder="Landmark">
+                                                </div>
+                                            </div>
+                                            <div class="clear"> </div>
+                                        </div>
+                                        <div class="controls">
+                                            <label class="control-label">Town/City: </label>
+                                            <input class="form-control" type="text" placeholder="Town/City">
+                                        </div>
+                                        <div class="controls">
+                                            <label class="control-label">Address type: </label>
+                                            <select class="form-control option-fieldf">
+                                                <option>Office</option>
+                                                <option>Home</option>
+                                                <option>Commercial</option>
+
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <button class="submit check_out">place order</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!--//checkout-->
+    <!-- js -->
+    <script src="~/Content/Collection/js/jquery-2.2.3.min.js"></script>
+    <!-- //js -->
+    <!-- smooth dropdown -->
+    <script>
+        $(document).ready(function () {
+            $('ul li.dropdown').hover(function () {
+                $(this).find('.dropdown-menu').stop(true, true).delay(200).fadeIn(200);
+            }, function () {
+                $(this).find('.dropdown-menu').stop(true, true).delay(200).fadeOut(200);
+            });
+        });
+    </script>
+    <!-- //smooth dropdown -->
+    <!-- script for password match -->
+    <script>
+        window.onload = function () {
+            document.getElementById("password1").onchange = validatePassword;
+            document.getElementById("password2").onchange = validatePassword;
+        }
+
+        function validatePassword() {
+            var pass2 = document.getElementById("password2").value;
+            var pass1 = document.getElementById("password1").value;
+            if (pass1 != pass2)
+                document.getElementById("password2").setCustomValidity("Passwords Don't Match");
+            else
+                document.getElementById("password2").setCustomValidity('');
+            //empty string means no validation error
+        }
+    </script>
+    <!-- script for password match -->
+    <!-- cart-js -->
+    <script src="~/Content/Collection/js/minicart.js"></script>
+    <script>
+        hub.render();
+
+        hub.cart.on('new_checkout', function (evt) {
+            var items, len, i;
+
+            if (this.subtotal() > 0) {
+                items = this.items();
+
+                for (i = 0, len = items.length; i < len; i++) { }
+            }
+        });
+    </script>
+    <!-- //cart-js -->
+    <!-- start-smooth-scrolling -->
+    <script src="~/Content/Collection/js/move-top.js"></script>
+    <script src="~/Content/Collection/js/easing.js"></script>
+    <script>
+        jQuery(document).ready(function ($) {
+            $(".scroll").click(function (event) {
+                event.preventDefault();
+
+                $('html,body').animate({
+                    scrollTop: $(this.hash).offset().top
+                }, 1000);
+            });
+        });
+    </script>
+    <!-- //end-smooth-scrolling -->
+    <!-- smooth-scrolling-of-move-up -->
+    <script>
+        $(document).ready(function () {
+            $().UItoTop({
+                easingType: 'easeOutQuart'
+            });
+
+        });
+    </script>
+    <script src="~/Content/Collection/js/SmoothScroll.min.js"></script>
+    <!-- //smooth-scrolling-of-move-up -->
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="~/Content/Collection/js/bootstrap.js"></script>
+</body>
+</html>
